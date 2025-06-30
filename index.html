@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartest Retards - Member Profile</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="floating-element" style="top: 10%; left: 5%;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                fill="#7e5bef" opacity="0.6" />
+        </svg>
+    </div>
+    <div class="floating-element" style="top: 15%; right: 7%;">
+        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M21 16V8C21 5.79086 19.2091 4 17 4H7C4.79086 4 3 5.79086 3 8V16C3 18.2091 4.79086 20 7 20H17C19.2091 20 21 18.2091 21 16Z"
+                stroke="#ff6b9c" stroke-width="1.5" opacity="0.6" fill="none" />
+        </svg>
+    </div>
+    <div class="floating-element" style="bottom: 20%; left: 8%;">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#5b8ef9" stroke-width="1.5" opacity="0.6" fill="none" />
+        </svg>
+    </div>
+
+    <div id="app" class="w-full max-w-3xl">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3">
+                <span class="server-title">Smartest Retards</span>
+            </h1>
+            <p class="text-neutral-600 text-lg">Member Profile Card</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="flex flex-col items-center text-center relative z-10">
+                    <img :src="member.pfp" alt="Profile picture"
+                        class="profile-pic w-32 h-32 rounded-full object-cover">
+
+                    <div class="mt-6">
+                        <h2 class="text-3xl font-bold mb-2">
+                            <span class="nickname">{{ member.nickname }}</span>
+                            <span class="age-badge text-xs font-semibold px-3 py-1 rounded-full text-white ml-2">
+                                {{ member.age }} years
+                            </span>
+                        </h2>
+
+                        <div class="discord-badge inline-flex items-center px-4 py-2 rounded-full text-white">
+                            <i class="fab fa-discord mr-2"></i>
+                            <span class="font-semibold">{{ member.discord }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member details -->
+            <div class="p-6 md:p-8 mt-12">
+                <div class="description-box p-6 mb-8">
+                    <div class="text-gray-700 leading-relaxed relative z-10"
+                        v-html="member.description.replace('\n', '<br>')"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="info-box p-5">
+                        <h3 class="text-primary text-sm font-semibold uppercase mb-3 flex items-center">
+                            <i class="fas fa-heart mr-2"></i> Gender
+                        </h3>
+                        <p class="text-gray-700 font-medium text-sm break-all">{{ member.gender }}</p>
+                    </div>
+
+                    <div class="info-box p-5">
+                        <h3 class="text-primary text-sm font-semibold uppercase mb-3 flex items-center">
+                            <i class="fas fa-calendar-alt mr-2"></i> Role
+                        </h3>
+                        <p class="text-gray-700 font-medium">Member</p>
+                    </div>
+                </div>
+
+                <div v-if="member.message" class="message-box p-6 relative">
+                    <div class="relative z-10">
+                        <h3 class="text-white text-sm font-semibold uppercase mb-3 flex items-center">
+                            <i class="fas fa-comment-alt mr-2"></i> Message to Server
+                        </h3>
+                        <p class="text-white font-medium italic">"{{ member.message }}"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer px-6 py-4 text-center">
+                <p class="text-white font-medium">Smartest Retards Server Member</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
