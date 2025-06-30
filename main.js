@@ -5,7 +5,7 @@ createApp({
         const members = ref([]);
         const loading = ref(true);
         const error = ref(null);
-        const member = ref(null);
+        const member = ref({});
         const username = new URLSearchParams(window.location.search).get('username');
 
         onMounted(() => {
