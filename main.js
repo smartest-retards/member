@@ -7,6 +7,7 @@ createApp({
         const error = ref(null);
         const member = ref({});
         const username = new URLSearchParams(window.location.search).get('username');
+        console.log(username)
 
         onMounted(() => {
             loadCSVData();
