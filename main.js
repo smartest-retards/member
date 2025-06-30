@@ -17,7 +17,7 @@ createApp({
             loading.value = true;
             error.value = null;
 
-            Papa.parse('https://smartest-retards.github.io/members.csv', {
+            Papa.parse('members.csv', {
                 download: true,
                 header: true,
                 skipEmptyLines: true,
