@@ -7,7 +7,11 @@ createApp({
         const error = ref(null);
         const member = ref({});
         const username = new URLSearchParams(window.location.search).get('username');
-        console.log(username)
+        const roles = {
+            "nacreousdawn596" : "Manager",
+            "estelle_maybe": "Owner (also the Queen)",
+            "tbh_yrbs": "Administrator"
+        }
 
         onMounted(() => {
             loadCSVData();
@@ -69,7 +73,8 @@ createApp({
         };
 
         return {
-            member
+            member,
+            roles
         };
     }
 }).mount('#app');
