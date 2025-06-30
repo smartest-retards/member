@@ -13,6 +13,18 @@ createApp({
             loadCSVData();
         });
 
+        const isValidImage = (link) => {
+            if (typeof link !== 'string') return false;
+            // Check for common image extensions
+            const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.svg'];
+            try {
+                const url = new URL(link, window.location.origin);
+                return imageExtensions.some(ext => url.pathname.toLowerCase().endsWith(ext));
+            } catch (e) {
+                return false;
+            }
+        };
+
         const loadCSVData = () => {
             loading.value = true;
             error.value = null;
