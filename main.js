@@ -8,14 +8,10 @@ createApp({
         const member = ref({});
         const username = new URLSearchParams(window.location.search).get('username');
         const roles = {
-            "nacreousdawn596" : "Manager",
+            "nacreousdawn596": "Manager",
             "estelle_maybe": "Owner (also the Queen)",
             "tbh_yrbs": "Administrator"
-        }
-
-        onMounted(() => {
-            loadCSVData();
-        });
+        };
 
         const isValidImage = (link) => {
             if (typeof link !== 'string') return false;
@@ -27,30 +23,6 @@ createApp({
             } catch (e) {
                 return false;
             }
-        };
-
-        const loadCSVData = () => {
-            loading.value = true;
-            error.value = null;
-
-            Papa.parse('members.csv', { 
-                download: true,
-                header: true,
-                skipEmptyLines: true,
-                complete: function (results) {
-                    loading.value = false;
-                    if (results.data && results.data.length > 0) {
-                        members.value = results.data;
-                        findMemberByUsername(username);
-                    } else {
-                        error.value = "No member data found in the CSV file.";
-                    }
-                },
-                error: function (error) {
-                    loading.value = false;
-                    error.value = "Failed to load CSV file: " + error.message;
-                }
-            });
         };
 
         const findMemberByUsername = (username) => {
@@ -72,10 +44,31 @@ createApp({
             }
         };
 
+        loading.value = true;
+        error.value = null;
+        Papa.parse('members.csv', {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function (results) {
+                console.log("CSV loaded", results.data);
+                loading.value = false;
+                members.value = results.data;
+                if (username) {
+                    findMemberByUsername(username);
+                    console.log(member.value);
+                }
+            },
+            error: function (error) {
+                console.error("CSV load failed", error);
+                loading.value = false;
+            }
+        });
+
         return {
             member,
             roles,
-            isValidImage
+            isValidImage,
         };
     }
 }).mount('#app');

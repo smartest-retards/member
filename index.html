@@ -61,7 +61,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                     </div>
-                        class="profile-pic w-32 h-32 rounded-full object-cover">
 
                     <div class="mt-6">
                         <h2 class="text-3xl font-bold mb-2">
@@ -104,12 +103,12 @@
                     </div>
                 </div>
 
-                <div v-if="member.message" class="message-box p-6 relative">
+                <div v-if="member['something you wanna say']" class="message-box p-6 relative">
                     <div class="relative z-10">
                         <h3 class="text-white text-sm font-semibold uppercase mb-3 flex items-center">
                             <i class="fas fa-comment-alt mr-2"></i> Message to Server
                         </h3>
-                        <p class="text-white font-medium italic">"{{ member.message }}"</p>
+                        <p class="text-white font-medium italic">"{{ member['something you wanna say'] }}"</p>
                     </div>
                 </div>
             </div>
