@@ -74,7 +74,8 @@ createApp({
 
         return {
             member,
-            roles
+            roles,
+            isValidImage
         };
     }
 }).mount('#app');
